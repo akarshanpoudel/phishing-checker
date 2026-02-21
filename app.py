@@ -407,28 +407,26 @@ def render_history():
     if not history:
         return
 
-    rows_html = ""
-    for item in reversed(history[-15:]):   # show last 15
-        sc  = "status-safe"   if item["status"] == "safe" else \
-              "status-threat" if item["status"] == "threat" else "status-error"
-        label = "✓ Safe" if item["status"] == "safe" else \
-                "⚠ Threat" if item["status"] == "threat" else "✕ Error"
-        url_short = item["url"][:55] + "…" if len(item["url"]) > 55 else item["url"]
-        rows_html += f"""
-        <div class="history-row">
-          <span class="history-time">{item['time']}</span>
-          <span class="history-url">{url_short}</span>
-          <span class="history-status {sc}">{label}</span>
-        </div>
-        """
+    st.markdown("---")
+    st.markdown("##### 🕐 Scan History")
 
-    st.markdown(f"""
-    <div class="history-section">
-      <div class="history-title">Scan History</div>
-      {rows_html}
-    </div>
-    """, unsafe_allow_html=True)
+    for item in reversed(history[-15:]):
+        col1, col2, col3 = st.columns([1, 4, 1])
 
+        with col1:
+            st.caption(item["time"])
+
+        with col2:
+            url_short = item["url"][:50] + "…" if len(item["url"]) > 50 else item["url"]
+            st.caption(f"`{url_short}`")
+
+        with col3:
+            if item["status"] == "safe":
+                st.success("✓ Safe", icon=None)
+            elif item["status"] == "threat":
+                st.error("⚠ Threat", icon=None)
+            else:
+                st.warning("✕ Error", icon=None)
 
 # ── Main App ───────────────────────────────────────────────────────────────────
 
