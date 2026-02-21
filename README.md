@@ -2,9 +2,8 @@
 
 A web app that checks any URL against **Google's Safe Browsing API** to detect malware, phishing, unwanted software, and harmful applications — instantly, in your browser.
 
-**Live demo:** `https://your-app-name.streamlit.app` ← update this after deploying
+**Live demo:** https://phishing-checker-cxyxvm6t7cu7qtjgappocx.streamlit.app
 
----
 
 ## Features
 
@@ -14,7 +13,7 @@ A web app that checks any URL against **Google's Safe Browsing API** to detect m
 - 🌐 Works on any device — no install needed
 - 🔒 API key stored securely via Streamlit Secrets
 
----
+
 
 ## Deploy Your Own (Free)
 
